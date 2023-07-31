@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"> <i class="bi bi-boxes"></i>&nbsp;Inventory Management</a>
+    <div class="d-flex" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active nv-hov" aria-current="page" href="/"><i class="bi bi-house-door"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nv-hov" href="/profile"><i class="bi bi-person-circle"></i> {{curuser.name}}</a>
+        </li>
+        <li class="nav-item nv-hov">
+          <a class="nav-link nv-hov" href="/auth/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{{#if removedUser}}
+<div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+  User has been removed.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+
+
+<div class="container pt-5 pb-0">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Users</li>
+    </ol>
+  </nav>
+
+  <div class="row mx-1">
+    <div class="col-6 p-0">
+      <h1>Users</h1>
+    </div>
+  </div>
+
+  {{#if message}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+
+  <div class="table-responsive  pt-0 pb-5 mx-0">
+
+    <table class="table table-bordered table-striped-columns align-middle">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Privilages</th>
+          <th scope="col" class="text-end">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {{#each rows}}
+
+
+        <tr>
+          <th scope="row">{{this.id}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.email}}</td>
+          <td>
+            <form class="d-flex mb-0 mx-3" method="POST" action="/users/update/{{this.id}}" novalidate>
+              <input class="form-control me-2" value="{{this.type}}" type="text" placeholder="User Type" name="type">
+              <button class="btn btn-outline-success" type="submit">Update</button>
+            </form>
+          </td>
+
+          <td class="text-end d-flex flex-row-reverse align-items-baseline">
+
+
+
+            <a href="/users/delete/{{this.id}}" type="button" class="btn btn-light btn-small"> <i
+                class="bi bi-trash"></i>
+              Delete</a>
+
+          </td>
+        </tr>
+
+        {{/each}}
+
+
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+
+
+</div>

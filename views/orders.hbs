@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"> <i class="bi bi-boxes"></i>&nbsp;Inventory Management</a>
+
+        <div class="d-flex" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active nv-hov" aria-current="page" href="/"><i class="bi bi-house-door"></i>
+                        Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nv-hov" href="/profile"> <i class="bi bi-person-circle"></i> {{curuser.name}}</a>
+                </li>
+                <li class="nav-item nv-hov">
+                    <a class="nav-link nv-hov" href="/auth/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div class="row mx-3">
+    <div class="col-6 pt-5 pb-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Orders Dashboard</li>
+            </ol>
+        </nav>
+        <h1>Orders</h1>
+    </div>
+</div>
+{{!-- <div class="col-6 d-flex justify-content-end p-0">
+    <a href="/storage/additem" class="btn btn-primary align-self-center">+ add
+        item</a>
+</div> --}}
+
+
+<div class="table-responsive  pt-0 pb-5 mx-3">
+
+    <table class="table table-bordered table-striped-columns">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Ordered On</th>
+                <th scope="col" class="text-end">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each rows}}
+
+            <tr>
+                <th scope="row" style="width: 85px;">{{this.orderid}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.iname}}</td>
+                <td>{{this.amount}}</td>
+                <td style="width: 300px;">{{this.order_date}}</td>
+                <td class="text-end">
+
+                    <a href="/orders/{{this.orderid}}" type="button" class="btn btn-light btn-small"> <i
+                            class="bi bi-trash"></i>
+                        Delete</a>
+
+                </td>
+            </tr>
+
+            {{/each}}
+
+        </tbody>
+    </table>
+
+</div>

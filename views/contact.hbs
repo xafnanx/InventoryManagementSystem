@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"> <i class="bi bi-boxes"></i>&nbsp;Inventory Management</a>
+
+        <div class="d-flex" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active nv-hov" aria-current="page" href="/"><i class="bi bi-house-door"></i>
+                        Home</a>
+                </li>
+
+                {{#if curuser}}
+                <li class="nav-item">
+                    <a class="nav-link nv-hov" href="/orderhistory/{{curuser.id}}"> <i class="bi bi-cart"></i>
+                        Orders</a>
+                </li>
+                {{/if}}
+
+                {{#if curuser}}
+                <li class="nav-item">
+                    <a class="nav-link nv-hov" href="/profile"> <i class="bi bi-person-circle"></i> {{curuser.name}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nv-hov" href="/auth/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link nv-hov" href="/login"><i class="bi bi-box-arrow-in-left"></i> Login</a>
+                </li>
+                <li class="nav-item nv-hov">
+                    <a class="nav-link nv-hov" href="/register">Register</a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container mt-4 px-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+        </ol>
+    </nav>
+
+    {{#if success}}
+    <div class="alert alert-success" role="alert">
+        {{success}}
+    </div>
+    {{/if}}
+    {{#if message}}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+    {{/if}}
+
+    <h1>Contact Us</h1>
+    <p><strong>Please fill the below form</strong></p>
+    <form action="/contact" method="POST">
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+
+        <div class="col-12">
+            <label for="message" class="form-label">Message/Comments</label>
+            <textarea type="text" class="form-control" id="floatingInput" name="comment"
+                style="height: 200px;"></textarea>
+        </div>
+
+        <div class="col-12 d-grid mt-3">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    </form>
+
+</div>

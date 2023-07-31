@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"> <i class="bi bi-boxes"></i>&nbsp;Inventory Management</a>
+
+        <div class="d-flex" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active nv-hov" aria-current="page" href="/"><i class="bi bi-house-door"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nv-hov" href="/profile"><i class="bi bi-person-circle"></i> {{curuser.name}}</a>
+                </li>
+                <li class="nav-item nv-hov">
+                    <a class="nav-link nv-hov" href="/auth/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="container pt-5 pb-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/storage">Storage</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Item</li>
+        </ol>
+    </nav>
+
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+
+
+    {{#if alert}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{alert}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+
+    <form class="row g-3 needs-validation" method="POST" action="/storage/additem" novalidate>
+        {{> item-form}}
+    </form>
+
+
+</div>
+
